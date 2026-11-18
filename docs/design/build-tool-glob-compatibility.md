@@ -42,3 +42,7 @@ Tracking: site Feature #1662 / Story #2193 / Task #2539. Inherit the feedback
 rollout flags; they remain disabled. This build dependency adds no user-facing
 capability or runtime service. Package CI runs on Node's built-in test runner
 so its own validation does not require the dependency being replaced.
+
+Initial registration follows ADR 0001's default-off production boundary and the
+site's narrowly scoped ADR 0199 admission, using a dedicated short-lived secret
+and permanent OIDC handover. The inherited organisation token is not eligible.

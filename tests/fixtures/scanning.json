@@ -1,0 +1,612 @@
+[
+  {
+    "pattern": "*",
+    "expected": {
+      "prefix": "",
+      "base": "",
+      "glob": "*",
+      "parts": [
+        "*"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "**",
+    "expected": {
+      "prefix": "",
+      "base": "",
+      "glob": "**",
+      "parts": [
+        "**"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "**/*",
+    "expected": {
+      "prefix": "",
+      "base": "",
+      "glob": "**/*",
+      "parts": [
+        "**",
+        "*"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "**/*.ts",
+    "expected": {
+      "prefix": "",
+      "base": "",
+      "glob": "**/*.ts",
+      "parts": [
+        "**",
+        "*.ts"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "**/*.{test,spec}.{js,ts}",
+    "expected": {
+      "prefix": "",
+      "base": "",
+      "glob": "**/*.{test,spec}.{js,ts}",
+      "parts": [
+        "**",
+        "*.{test,spec}.{js,ts}"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "src/**/*.tests.ts",
+    "expected": {
+      "prefix": "",
+      "base": "src",
+      "glob": "**/*.tests.ts",
+      "parts": [
+        "src",
+        "**",
+        "*.tests.ts"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "**/*.{c,m}?[jt]s?(x)",
+    "expected": {
+      "prefix": "",
+      "base": "",
+      "glob": "**/*.{c,m}?[jt]s?(x)",
+      "parts": [
+        "**",
+        "*.{c,m}?[jt]s?(x)"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "*.js",
+    "expected": {
+      "prefix": "",
+      "base": "",
+      "glob": "*.js",
+      "parts": [
+        "*.js"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "!*.js",
+    "expected": {
+      "prefix": "!",
+      "base": "",
+      "glob": "*.js",
+      "parts": [
+        "*.js"
+      ],
+      "isGlob": true,
+      "negated": true,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "!(*.test).js",
+    "expected": {
+      "prefix": "",
+      "base": "",
+      "glob": "!(*.test).js",
+      "parts": [
+        "!(*.test).js"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": true
+    }
+  },
+  {
+    "pattern": "+(a|b).js",
+    "expected": {
+      "prefix": "",
+      "base": "",
+      "glob": "+(a|b).js",
+      "parts": [
+        "+(a|b).js"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "@(foo|bar)/*",
+    "expected": {
+      "prefix": "",
+      "base": "",
+      "glob": "@(foo|bar)/*",
+      "parts": [
+        "@(foo|bar)",
+        "*"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "{src,tests}/**",
+    "expected": {
+      "prefix": "",
+      "base": "",
+      "glob": "{src,tests}/**",
+      "parts": [
+        "{src,tests}",
+        "**"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "file{1..3}.txt",
+    "expected": {
+      "prefix": "",
+      "base": "",
+      "glob": "file{1..3}.txt",
+      "parts": [
+        "file{1..3}.txt"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "[ab]*.js",
+    "expected": {
+      "prefix": "",
+      "base": "",
+      "glob": "[ab]*.js",
+      "parts": [
+        "[ab]*.js"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "**/.env",
+    "expected": {
+      "prefix": "",
+      "base": "",
+      "glob": "**/.env",
+      "parts": [
+        "**",
+        ".env"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "**/.env.*",
+    "expected": {
+      "prefix": "",
+      "base": "",
+      "glob": "**/.env.*",
+      "parts": [
+        "**",
+        ".env.*"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "**/*.{crt,pem}",
+    "expected": {
+      "prefix": "",
+      "base": "",
+      "glob": "**/*.{crt,pem}",
+      "parts": [
+        "**",
+        "*.{crt,pem}"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "**/.git/**",
+    "expected": {
+      "prefix": "",
+      "base": "",
+      "glob": "**/.git/**",
+      "parts": [
+        "**",
+        ".git",
+        "**"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "foo",
+    "expected": {
+      "prefix": "",
+      "base": "foo",
+      "glob": "",
+      "parts": [
+        "foo"
+      ],
+      "isGlob": false,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "foo/bar",
+    "expected": {
+      "prefix": "",
+      "base": "foo/bar",
+      "glob": "",
+      "parts": [
+        "foo",
+        "bar"
+      ],
+      "isGlob": false,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "./src/*.ts",
+    "expected": {
+      "prefix": "./",
+      "base": "src",
+      "glob": "*.ts",
+      "parts": [
+        "src",
+        "*.ts"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "/src/**/*.ts",
+    "expected": {
+      "prefix": "",
+      "base": "/src",
+      "glob": "**/*.ts",
+      "parts": [
+        "",
+        "src",
+        "**",
+        "*.ts"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "src/\\*.ts",
+    "expected": {
+      "prefix": "",
+      "base": "src/\\*.ts",
+      "glob": "",
+      "parts": [
+        "src",
+        "\\*.ts"
+      ],
+      "isGlob": false,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "[[:alpha:]].js",
+    "expected": {
+      "prefix": "",
+      "base": "",
+      "glob": "[[:alpha:]].js",
+      "parts": [
+        "[[:alpha:]].js"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "a/**/b",
+    "expected": {
+      "prefix": "",
+      "base": "a",
+      "glob": "**/b",
+      "parts": [
+        "a",
+        "**",
+        "b"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "foo/**",
+    "expected": {
+      "prefix": "",
+      "base": "foo",
+      "glob": "**",
+      "parts": [
+        "foo",
+        "**"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "**/node_modules/**",
+    "expected": {
+      "prefix": "",
+      "base": "",
+      "glob": "**/node_modules/**",
+      "parts": [
+        "**",
+        "node_modules",
+        "**"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "foo(bar|baz).js",
+    "expected": {
+      "prefix": "",
+      "base": "",
+      "glob": "foo(bar|baz).js",
+      "parts": [
+        "foo(bar|baz).js"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "a?c",
+    "expected": {
+      "prefix": "",
+      "base": "",
+      "glob": "a?c",
+      "parts": [
+        "a?c"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "foo/**/../bar",
+    "expected": {
+      "prefix": "",
+      "base": "foo",
+      "glob": "**/../bar",
+      "parts": [
+        "foo",
+        "**",
+        "..",
+        "bar"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "!foo",
+    "expected": {
+      "prefix": "!",
+      "base": "foo",
+      "glob": "",
+      "parts": [
+        "foo"
+      ],
+      "isGlob": false,
+      "negated": true,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "!!foo",
+    "expected": {
+      "prefix": "!!",
+      "base": "foo",
+      "glob": "",
+      "parts": [
+        "foo"
+      ],
+      "isGlob": false,
+      "negated": true,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "foo/",
+    "expected": {
+      "prefix": "",
+      "base": "foo/",
+      "glob": "",
+      "parts": [
+        "foo",
+        ""
+      ],
+      "isGlob": false,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "foo/**/",
+    "expected": {
+      "prefix": "",
+      "base": "foo",
+      "glob": "**/",
+      "parts": [
+        "foo",
+        "**",
+        ""
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "a{b,c/d}/file",
+    "expected": {
+      "prefix": "",
+      "base": "",
+      "glob": "a{b,c/d}/file",
+      "parts": [
+        "a{b,c/d}",
+        "file"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "{literal}",
+    "expected": {
+      "prefix": "",
+      "base": "{literal}",
+      "glob": "",
+      "parts": [
+        "{literal}"
+      ],
+      "isGlob": false,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "foo\\(x\\)/*.ts",
+    "expected": {
+      "prefix": "",
+      "base": "foo\\(x\\)",
+      "glob": "*.ts",
+      "parts": [
+        "foo\\(x\\)",
+        "*.ts"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "foo/(bar|baz)/*.ts",
+    "expected": {
+      "prefix": "",
+      "base": "foo",
+      "glob": "(bar|baz)/*.ts",
+      "parts": [
+        "foo",
+        "(bar|baz)",
+        "*.ts"
+      ],
+      "isGlob": true,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "foo//bar",
+    "expected": {
+      "prefix": "",
+      "base": "foo//bar",
+      "glob": "",
+      "parts": [
+        "foo",
+        "",
+        "bar"
+      ],
+      "isGlob": false,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  },
+  {
+    "pattern": "./foo",
+    "expected": {
+      "prefix": "./",
+      "base": "foo",
+      "glob": "",
+      "parts": [
+        "foo"
+      ],
+      "isGlob": false,
+      "negated": false,
+      "negatedExtglob": false
+    }
+  }
+]
