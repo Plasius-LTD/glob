@@ -64,3 +64,12 @@ test('adversarial extglobs complete within a bounded process without regex backt
   assert.ifError(child.error);
   assert.equal(child.status, 0, child.stderr);
 });
+
+test('rejects globstar depth before the engine can silently omit a matching file', () => {
+  const pattern = count => Array(count).fill('**/a').join('/') + '/z';
+  const input = count => Array(count).fill('a').join('/') + '/z';
+  assert.equal(matcher(pattern(16))(input(16)), true);
+  assert.throws(() => matcher(pattern(17)), /globstar depth/i);
+  assert.throws(() => matcher(pattern(16), { contains: true }), /globstar depth/i);
+  assert.equal(matcher(pattern(17), { noglobstar: true })(Array(17).fill('x/a').join('/') + '/z'), true);
+});
