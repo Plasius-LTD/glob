@@ -1,0 +1,63 @@
+{
+  "name": "@plasius/glob",
+  "version": "1.0.0",
+  "description": "Bounded nonrecursive glob matching and compatibility for Plasius build tools",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node scripts/build-esm.cjs",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "lint": "eslint . --max-warnings=0",
+    "test": "node --test tests/*.test.cjs",
+    "test:coverage": "node scripts/prepare-coverage.cjs && node --experimental-test-coverage --test-coverage-include=\"src/*.cjs\" --test-coverage-lines=80 --test-coverage-functions=80 --test-coverage-branches=70 --test --test-reporter=spec --test-reporter=lcov --test-reporter-destination=stdout --test-reporter-destination=coverage/lcov.info tests/*.test.cjs",
+    "audit:npm": "npm audit --audit-level=high",
+    "privacy:check": "node scripts/verify-private-artifacts.cjs",
+    "pack:check": "node scripts/verify-public-package.cjs",
+    "prepublishOnly": "npm run build && npm run pack:check"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Plasius-LTD/glob.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Plasius-LTD/glob/issues"
+  },
+  "homepage": "https://github.com/Plasius-LTD/glob#readme",
+  "author": "Plasius LTD <development@plasius.co.uk>",
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">=24"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "minimatch": "11.0.9"
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@types/node": "26.4.0",
+    "eslint": "10.15.0",
+    "globals": "17.11.0",
+    "typescript": "6.0.3"
+  }
+}
