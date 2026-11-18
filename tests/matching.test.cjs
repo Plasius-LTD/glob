@@ -47,6 +47,8 @@ test('rejects unsupported compiler behavior and bounded inputs explicitly', () =
   assert.throws(() => matcher('*')(null), TypeError);
   assert.throws(() => matcher('{a,b}'.repeat(10)), RangeError);
   assert.throws(() => matcher.makeRe('**/*.png'), /RegExp/);
+  assert.throws(() => matcher('@(foo/bar|baz)'), /path separator/);
+  assert.equal(matcher('{foo/bar,baz}')('foo/bar'), true);
 });
 
 test('adversarial extglobs complete within a bounded process without regex backtracking', () => {

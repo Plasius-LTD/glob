@@ -27,15 +27,21 @@ runtime capability or infrastructure is added by this package.
 
 ## First publication
 
-npm requires an existing package before configuring a trusted publisher. Version
-1.0.0 alone can use the existing organisation registry credential inside the
-same protected `cd.yml` production publish job. It still consumes the sealed,
-attested tarball from exact-main CI; no dependency or package scripts execute
-with that credential. The step requires the exact package name, stable tag and
-an HTTP 404 for the entire package. Network/server errors or an existing package
-fail closed. It does not act as a fallback for failed OIDC publication.
+Reuse the existing default-off first-registration boundary from site ADR 0197,
+narrowed to `Plasius-LTD/glob` / `@plasius/glob@1.0.0`. An explicit
+`first_publication=true` dispatch is forwarded through both CD phases. A
+reviewed dependency-free guard verifies the repository/package/version, exact
+main checkout and workflow SHA, and a bounded anonymous registry HTTP 404.
+Network errors, redirects, existing packages and failed OIDC never enable it.
 
-After the first release, bind `Plasius-LTD/glob` / `cd.yml` / `production` as the
-npm trusted publisher. All later versions use OIDC exclusively. The bootstrap
-credential never enters source, artifacts, logs or local publication. Remove
-the one-version bootstrap after trusted publishing is configured and verified.
+Only a dedicated one-day granular `NPM_BOOTSTRAP_TOKEN` in the production
+GitHub environment may register the package. Do not use the inherited
+organisation `NPM_TOKEN`. Preserve the existing sealed tarball, exact-main CI,
+provenance, registry-byte verification, no-script publication and temporary
+0600 configuration cleanup. The site auditor binds the unchanged publication
+step and this package's own guard digest. Test admission, rejection, secret
+isolation and cleanup before publication.
+
+After registration, revoke/remove that credential and bind the exact repository,
+`cd.yml` and `production` npm trusted publisher. Remove the bootstrap route and
+verify a normal OIDC release before closing the task. No local publication.

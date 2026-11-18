@@ -45,8 +45,9 @@ jobs:
           node --input-type=module <<'NODE'
           import { readFileSync, readdirSync } from 'node:fs';
           const lcov = readFileSync('coverage/lcov.info', 'utf8');
-          for (const file of readdirSync('src').filter(file => file.endsWith('.cjs'))) {
-            if (!lcov.split('\n').some(line => line.startsWith('SF:') && (line.endsWith('/src/' + file) || line === 'SF:src/' + file))) {
+          const files = [...readdirSync('src').filter(file => file.endsWith('.cjs')).map(file => 'src/' + file), 'scripts/verify-first-publication.mjs'];
+          for (const file of files) {
+            if (!lcov.split('\n').some(line => line.startsWith('SF:') && (line.endsWith('/' + file) || line === 'SF:' + file))) {
               throw new Error('Missing runtime source coverage: ' + file);
             }
           }

@@ -25,6 +25,9 @@ The scanner supports `parts` and `nonegate` and returns prefix/base/glob and
 negation/magic classification. Unknown options throw rather than silently
 changing selection. Inputs are never logged by the matcher.
 
+Extended or bare parenthesized groups cannot span path separators; use brace
+alternatives or a pattern array for those paths. Such groups throw explicitly.
+
 Limits are 256 patterns including ignores, 1,024 UTF-16 code units per pattern,
 8,192 aggregate pattern units, eight nesting levels, 256 expansions per
 compiled pattern and 4,096 units per candidate. Inputs exceeding a limit throw
@@ -59,8 +62,11 @@ Releases run exclusively through protected main/production `cd.yml`. No local
 publication is permitted. A failed integration holds release; the vulnerable
 implementation is not an acceptable production rollback.
 
-For the first 1.0.0 publication only, the production workflow uses the existing
-organisation registry credential against an absent package, with scripts
-disabled. It then requires the exact package/workflow/production OIDC binding
-for later versions; the first-release step cannot publish another version or
-fall back after an OIDC failure. See ADR-0001 for the full boundary.
+The first 1.0.0 registration requires an explicit default-off dispatch and a
+dedicated one-day production `NPM_BOOTSTRAP_TOKEN`, under the existing reviewed
+first-registration process. The inherited organisation token is ineligible.
+The exact-main guard accepts only anonymous registry 404, preserves the sealed
+tarball/provenance, and cleans its temporary credential configuration on exit.
+After registration, revoke/remove the credential, configure the exact
+repository/`cd.yml`/`production` OIDC binding and remove the bootstrap path.
+Verify a normal OIDC release before closing the task. See ADR-0001.

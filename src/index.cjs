@@ -65,6 +65,7 @@ function normalizeGroups(pattern, options) {
   for (let i = 0; i < pattern.length; i++) {
     const char = pattern[i];
     if (char === '\\') { output += char + (pattern[++i] ?? ''); continue; }
+    if (char === '/' && literal.some(value => !value)) throw new TypeError('Glob groups cannot span a path separator; use braces or pattern arrays');
     if (char === '[') bracket++;
     if (char === ']') bracket = Math.max(0, bracket - 1);
     if (!bracket && char === '(') {
@@ -96,7 +97,6 @@ function compile(pattern, options) {
   // The compatibility surface historically permits one trailing slash for
   // simple wildcard/extension patterns, but not for negations or extglobs.
   const simple = /^(?:\*\*\/)?\*(?:\.(?:\*|[a-zA-Z0-9_-]+))?$/.test(normalized);
-  
   const patterns = [normalized];
   if (simple && settings.noglobstar && normalized.startsWith('**/')) patterns.push(normalized.slice(3));
   if (!settings.noglobstar && normalized.endsWith('/**')) patterns.push(normalized.slice(0, -3));
