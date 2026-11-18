@@ -46,3 +46,7 @@ so its own validation does not require the dependency being replaced.
 Initial registration follows ADR 0001's default-off production boundary and the
 site's narrowly scoped ADR 0199 admission, using a dedicated short-lived secret
 and permanent OIDC handover. The inherited organisation token is not eligible.
+
+Reject expanded patterns above 16 globstar segments before matching. Count
+the compiled globstar tokens so escaped stars and `noglobstar` remain literal.
+This prevents the engine recursion guard from silently omitting files.

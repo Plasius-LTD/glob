@@ -30,7 +30,8 @@ alternatives or a pattern array for those paths. Such groups throw explicitly.
 
 Limits are 256 patterns including ignores, 1,024 UTF-16 code units per pattern,
 8,192 aggregate pattern units, eight nesting levels, 256 expansions per
-compiled pattern and 4,096 units per candidate. Inputs exceeding a limit throw
+compiled pattern, 16 globstar segments per expanded pattern (including those
+added for `contains`), and 4,096 units per candidate. Inputs exceeding a limit throw
 `RangeError`; invalid types and unsupported APIs/options throw `TypeError`.
 The engine still has finite CPU and memory costs: do not treat these limits as
 permission to process unlimited hostile matching requests on a public endpoint.

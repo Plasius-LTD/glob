@@ -1,5 +1,5 @@
 'use strict';
-const { Minimatch } = require('minimatch');
+const { GLOBSTAR, Minimatch } = require('minimatch');
 
 /**
  * @typedef {object} GlobOptions
@@ -22,6 +22,7 @@ const MAX_PATTERN = 1024;
 const MAX_INPUT = 4096;
 const MAX_PATTERNS = 256;
 const MAX_TOTAL_PATTERN = 8192;
+const MAX_GLOBSTAR = 16;
 
 /** @param {unknown} value @returns {asserts value is string} */
 function validatePattern(value) {
@@ -86,7 +87,7 @@ function baseOptions(options) {
     noglobstar: options.noglobstar, nonegate: true, nocomment: true,
     matchBase: options.matchBase ?? options.basename, platform: 'linux',
     preserveMultipleSlashes: true, optimizationLevel: 0,
-    braceExpandMax: 257, maxGlobstarRecursion: 16 };
+    braceExpandMax: 257, maxGlobstarRecursion: MAX_GLOBSTAR };
 }
 
 /** @param {string} pattern @param {GlobOptions} options */
@@ -111,6 +112,11 @@ function compile(pattern, options) {
   const compiled = patterns.map(value => {
     const result = new Minimatch(value, settings);
     if (result.globSet.length > 256) throw new RangeError('Glob expansion exceeds its limit');
+    // The engine returns false when this limit is exceeded. Reject the pattern
+    // before matching so traversal and coverage cannot silently omit files.
+    if (result.set.some(parts => parts.filter(part => part === GLOBSTAR).length > MAX_GLOBSTAR)) {
+      throw new RangeError('Globstar depth exceeds its limit');
+    }
     return result;
   });
   return /** @param {string} input */ (input) => {
