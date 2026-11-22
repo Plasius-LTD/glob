@@ -1,6 +1,6 @@
 {
   "name": "@plasius/glob",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Bounded nonrecursive glob matching and compatibility for Plasius build tools",
   "type": "module",
   "sideEffects": false,
