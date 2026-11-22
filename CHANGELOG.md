@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Refresh supported npm dependency and security tooling baselines; preserve runtime API contracts (weekly maintenance, 2026-11-22).
+
 - Reject excessive globstar depth before the matching engine can silently omit files.
 
 - **Added**
