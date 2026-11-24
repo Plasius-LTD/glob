@@ -2,8 +2,9 @@
 
 ## [Unreleased]
 
-- Bind first registration to 1.0.2 after the failed 1.0.1 OIDC attempt, preserving
-  the existing release tag, exact-main gates and one-day credential boundary.
+- Align CD with the reviewed schema release template and remove glob-specific
+  registration inputs, credentials and guards; retain standard OIDC publication,
+  sealed-artifact verification and immutable release history.
 
 ## [1.0.1] - 2026-11-22
 
