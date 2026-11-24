@@ -34,7 +34,7 @@ on:
         required: false
         type: string
       first_publication:
-        description: "One-time glob 1.0.0 registration only; requires an absent package and temporary production credential"
+        description: "One-time glob 1.0.2 registration only; requires an absent package and temporary production credential"
         required: false
         type: boolean
         default: false

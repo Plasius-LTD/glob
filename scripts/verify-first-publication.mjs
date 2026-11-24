@@ -8,7 +8,7 @@ const packages = new Map([
 export async function verifyFirstPublication(input, fetchRegistry = fetch) {
   if (
     !packages.has(input.repository) || packages.get(input.repository) !== input.packageName
-    || input.version !== "1.0.0" || input.optIn !== "true" || input.credentialPresent !== true
+    || input.version !== "1.0.2" || input.optIn !== "true" || input.credentialPresent !== true
     || input.ref !== "refs/heads/main" || input.eventName !== "workflow_dispatch"
     || input.workflowRef !== `${input.repository}/.github/workflows/cd.yml@refs/heads/main`
     || !/^[0-9a-f]{40}$/u.test(input.expectedCommitSha ?? "")
