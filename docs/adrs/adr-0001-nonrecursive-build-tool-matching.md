@@ -25,31 +25,10 @@ Task: https://github.com/Plasius-LTD/glob/issues/1. Parent site Feature #1662,
 Story #2193 and Task #2539. Both feedback rollout flags remain disabled; no
 runtime capability or infrastructure is added by this package.
 
-## First publication
+## Release workflow
 
-Reuse the existing default-off first-registration boundary from site ADR 0197,
-narrowed to `Plasius-LTD/glob` / `@plasius/glob@1.0.2`. An explicit
-`first_publication=true` dispatch is forwarded through both CD phases. A
-reviewed dependency-free guard verifies the repository/package/version, exact
-main checkout and workflow SHA, and a bounded anonymous registry HTTP 404.
-Network errors, redirects, existing packages and failed OIDC never enable it.
-
-The 22 November maintenance release prepared 1.0.1 and reserved its immutable
-tag before ordinary OIDC failed on the unregistered package. Preserve that tag
-and pipeline-generated release history. Prepare 1.0.2 through the normal
-release workflow, admit only that exact first-registration version, and reject
-the obsolete 1.0.0/1.0.1 versions and every other version. The owner confirmed
-continued picomatch removal after the upstream advisory was withdrawn; this is
-the requested dependency policy, not an active vulnerability exception.
-
-Only a dedicated one-day granular `NPM_BOOTSTRAP_TOKEN` in the production
-GitHub environment may register the package. Do not use the inherited
-organisation `NPM_TOKEN`. Preserve the existing sealed tarball, exact-main CI,
-provenance, registry-byte verification, no-script publication and temporary
-0600 configuration cleanup. The site auditor binds the unchanged publication
-step and this package's own guard digest. Test admission, rejection, secret
-isolation and cleanup before publication.
-
-After registration, revoke/remove that credential and bind the exact repository,
-`cd.yml` and `production` npm trusted publisher. Remove the bootstrap route and
-verify a normal OIDC release before closing the task. No local publication.
+The earlier custom first-registration decision is superseded by
+[ADR-0002](adr-0002-schema-release-template.md), following the owner's
+24 November instruction to match the schema template without new secrets.
+There is no glob-specific bootstrap path or npm credential. Existing release
+tags remain immutable; publication follows the standard schema OIDC workflow.

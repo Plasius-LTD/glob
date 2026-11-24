@@ -63,11 +63,10 @@ Releases run exclusively through protected main/production `cd.yml`. No local
 publication is permitted. A failed integration holds release; returning to
 picomatch is outside the owner's approved removal plan.
 
-The first 1.0.2 registration requires an explicit default-off dispatch and a
-dedicated one-day production `NPM_BOOTSTRAP_TOKEN`, under the existing reviewed
-first-registration process. The inherited organisation token is ineligible.
-The exact-main guard accepts only anonymous registry 404, preserves the sealed
-tarball/provenance, and cleans its temporary credential configuration on exit.
-After registration, revoke/remove the credential, configure the exact
-repository/`cd.yml`/`production` OIDC binding and remove the bootstrap path.
-Verify a normal OIDC release before closing the task. See ADR-0001.
+The release workflow matches the reviewed `Plasius-LTD/schema` template at
+`33c7ed9da9bf42c2320381485afaace3e5e91dae`. Both CD phases use its standard
+main/production, sealed-artifact, provenance and npm OIDC checks. Glob adds no
+npm secret, first-publication input or credential fallback. Configure npm trust
+for `Plasius-LTD/glob`, workflow `cd.yml`, environment `production`, with direct
+publishing allowed. See [ADR-0002](docs/adrs/adr-0002-schema-release-template.md).
+Publication remains incomplete until the registry and provenance are verified.

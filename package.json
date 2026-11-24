@@ -28,7 +28,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "eslint . --max-warnings=0",
     "test": "node --test tests/*.test.cjs",
-    "test:coverage": "node scripts/prepare-coverage.cjs && node --experimental-test-coverage --test-coverage-include=\"src/*.cjs\" --test-coverage-include=\"scripts/verify-first-publication.mjs\" --test-coverage-lines=80 --test-coverage-functions=80 --test-coverage-branches=80 --test --test-reporter=spec --test-reporter=lcov --test-reporter-destination=stdout --test-reporter-destination=coverage/lcov.info tests/*.test.cjs",
+    "test:coverage": "node scripts/prepare-coverage.cjs && node --experimental-test-coverage --test-coverage-include=\"src/*.cjs\" --test-coverage-lines=80 --test-coverage-functions=80 --test-coverage-branches=80 --test --test-reporter=spec --test-reporter=lcov --test-reporter-destination=stdout --test-reporter-destination=coverage/lcov.info tests/*.test.cjs",
     "audit:npm": "npm audit --audit-level=high",
     "privacy:check": "node scripts/verify-private-artifacts.cjs",
     "pack:check": "node scripts/verify-public-package.cjs",

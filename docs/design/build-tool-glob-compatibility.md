@@ -1,7 +1,7 @@
 # Replace picomatch in Plasius build tooling
 
-The site release is blocked by GHSA-fc5q-39xc-vjpf. The owner requested removal
-of picomatch, including a replacement package if needed. No existing Plasius
+The owner requested removal of picomatch, including a replacement package if
+needed, and confirmed that direction after GHSA-fc5q-39xc-vjpf was withdrawn. No existing Plasius
 package owns filesystem pattern matching. Use the schema package's governance
 and release template for a new `@plasius/glob` package.
 
@@ -43,9 +43,10 @@ rollout flags; they remain disabled. This build dependency adds no user-facing
 capability or runtime service. Package CI runs on Node's built-in test runner
 so its own validation does not require the dependency being replaced.
 
-Initial registration follows ADR 0001's default-off production boundary and the
-site's narrowly scoped ADR 0199 admission, using a dedicated short-lived secret
-and permanent OIDC handover. The inherited organisation token is not eligible.
+Release preparation and publication match the reviewed schema template, as
+recorded in ADR 0002. Use its standard main/production OIDC path with no
+glob-specific credential or first-registration route. Retire glob's site
+auditor exception; unrelated arcade admissions remain unchanged.
 
 Reject expanded patterns above 16 globstar segments before matching. Count
 the compiled globstar tokens so escaped stars and `noglobstar` remain literal.
