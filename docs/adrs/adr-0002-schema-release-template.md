@@ -1,5 +1,8 @@
 # ADR 0002: Follow the schema release template without glob-specific credentials
 
+> Registration mechanics are superseded by the [shared Schema design](../design/shared-first-registration.md)
+> under Task #9. Historical secret names below are not operator instructions.
+
 Status: Accepted, 24 November 2026, under package Task #1 and site Task #2539,
 Story #2193 and Feature #1662.
 

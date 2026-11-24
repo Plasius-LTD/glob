@@ -5,10 +5,10 @@ const { readFileSync } = require('node:fs');
 const { join } = require('node:path');
 const { spawnSync } = require('node:child_process');
 
-// Approved schema main 33c7ed9da9bf42c2320381485afaace3e5e91dae (ADR-0002).
+// Reviewed Schema PR 88, shared registration template (ADR-0003).
 const templateDigests = {
-  'cd.yml': 'dbc8888336e4ea248b0a33c509430c4beaf0e73476e28904a30e262990b71706',
-  'release-prepare.yml': '03f2f1a4c753713aa35d70dfd3be4ad75a76febafa68439e1952165140568f57',
+  'cd.yml': '46474224bf92af3c81cbe51aee0891b5f97493d37e1fe322074a11d937f4febb',
+  'release-prepare.yml': '35ec824d3de0a19f47d1b440cef847314b81f696839ab8a4232f8f16c37a4d95',
 };
 const workflow = readFileSync(join(__dirname, '../.github/workflows/cd.yml'), 'utf8');
 
@@ -20,7 +20,12 @@ test('release workflows match the reviewed schema template without package-speci
 });
 
 test('publication uses OIDC without package-specific credential inputs or fallback', () => {
-  assert.doesNotMatch(workflow, /first_publication|NPM_BOOTSTRAP|NPM_TOKEN|NODE_AUTH_TOKEN|_authToken/);
+  const name = '\n      - name: Register new package with standard npm credential\n';
+  const step = workflow.split(name)[1]?.split('\n      - name:')[0];
+  assert.ok(step);
+  assert.match(step, /NPM_TOKEN: \$\{\{ secrets\.NPM_TOKEN \}\}/);
+  assert.doesNotMatch(workflow.replace(name + step, ''), /NPM_BOOTSTRAP|NPM_TOKEN|NODE_AUTH_TOKEN|_authToken/);
+  assert.match(workflow, /if: steps.release.outputs.should_publish_npm == 'true' && !inputs.first_publication/);
   const ci = readFileSync(join(__dirname, '../.github/workflows/ci.yml'), 'utf8');
   assert.doesNotMatch(ci, /verify-first-publication/);
   assert.match(workflow, /id-token: write/);

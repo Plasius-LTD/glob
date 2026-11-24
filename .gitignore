@@ -3,3 +3,4 @@ dist/
 coverage/
 *.tgz
 .npm-cache-packcheck/
+.first-publication-lcov.info

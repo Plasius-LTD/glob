@@ -63,10 +63,14 @@ Releases run exclusively through protected main/production `cd.yml`. No local
 publication is permitted. A failed integration holds release; returning to
 picomatch is outside the owner's approved removal plan.
 
-The release workflow matches the reviewed `Plasius-LTD/schema` template at
-`33c7ed9da9bf42c2320381485afaace3e5e91dae`. Both CD phases use its standard
-main/production, sealed-artifact, provenance and npm OIDC checks. Glob adds no
-npm secret, first-publication input or credential fallback. Configure npm trust
-for `Plasius-LTD/glob`, workflow `cd.yml`, environment `production`, with direct
-publishing allowed. See [ADR-0002](docs/adrs/adr-0002-schema-release-template.md).
-Publication remains incomplete until the registry and provenance are verified.
+
+## Package registration and trusted publishing
+
+The release workflow follows the shared `@plasius/schema` template. The reviewed
+enrollment allows only `@plasius/glob@1.0.2` through main `cd.yml` and the
+`production` environment, using the standard temporary `NPM_TOKEN`. The default
+release path remains OIDC. No package-specific secret is introduced. See the
+[registration design](docs/design/shared-first-registration.md) and
+[ADR 0003](docs/adrs/adr-0003-shared-schema-registration.md) for exact admission, credential cleanup
+and the verified OIDC handover. Publication remains incomplete until CD and npm
+registry integrity are verified.

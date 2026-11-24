@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+- Adopt the shared Schema first-registration template with the standard temporary
+  `NPM_TOKEN`, exact enrollment and subsequent tokenless OIDC handover (#9).
+
 - Align CD with the reviewed schema release template and remove glob-specific
   registration inputs, credentials and guards; retain standard OIDC publication,
   sealed-artifact verification and immutable release history.

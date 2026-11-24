@@ -32,7 +32,10 @@
     "audit:npm": "npm audit --audit-level=high",
     "privacy:check": "node scripts/verify-private-artifacts.cjs",
     "pack:check": "node scripts/verify-public-package.cjs",
-    "prepublishOnly": "npm run build && npm run pack:check"
+    "prepublishOnly": "npm run build && npm run pack:check",
+    "test:first-publication": "node --experimental-test-coverage --test-coverage-include=scripts/verify-first-publication.mjs --test-coverage-lines=80 --test-coverage-functions=80 --test-coverage-branches=80 --test-reporter=spec --test-reporter-destination=stdout --test-reporter=lcov --test-reporter-destination=.first-publication-lcov.info --test tests/first-publication.test.mjs",
+    "posttest": "npm run test:first-publication",
+    "posttest:coverage": "npm run test:first-publication && node -e \"const fs = require('node:fs'); fs.appendFileSync('coverage/lcov.info', fs.readFileSync('.first-publication-lcov.info'));\""
   },
   "repository": {
     "type": "git",
