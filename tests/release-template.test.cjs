@@ -5,9 +5,9 @@ const { readFileSync } = require('node:fs');
 const { join } = require('node:path');
 const { spawnSync } = require('node:child_process');
 
-// Approved schema main ad0bd3c96bc45c1f615fd8aaec924399c7a123b9 (ADR-0002).
+// Approved schema main 33c7ed9da9bf42c2320381485afaace3e5e91dae (ADR-0002).
 const templateDigests = {
-  'cd.yml': '7d6cea484f07206b1ef66f10d459113fe67b2ae9588a96e9b920f4b09aba8fb3',
+  'cd.yml': 'dbc8888336e4ea248b0a33c509430c4beaf0e73476e28904a30e262990b71706',
   'release-prepare.yml': '03f2f1a4c753713aa35d70dfd3be4ad75a76febafa68439e1952165140568f57',
 };
 const workflow = readFileSync(join(__dirname, '../.github/workflows/cd.yml'), 'utf8');
@@ -21,6 +21,8 @@ test('release workflows match the reviewed schema template without package-speci
 
 test('publication uses OIDC without package-specific credential inputs or fallback', () => {
   assert.doesNotMatch(workflow, /first_publication|NPM_BOOTSTRAP|NPM_TOKEN|NODE_AUTH_TOKEN|_authToken/);
+  const ci = readFileSync(join(__dirname, '../.github/workflows/ci.yml'), 'utf8');
+  assert.doesNotMatch(ci, /verify-first-publication/);
   assert.match(workflow, /id-token: write/);
   assert.match(workflow, /environment: production/);
   assert.match(workflow, /name: Enforce exact-main release identity/);

@@ -8,7 +8,7 @@ its own npm secret. This supersedes ADR 0001's custom initial-registration
 route and the earlier request for a dedicated bootstrap credential.
 
 Copy `cd.yml` from schema main
-`ad0bd3c96bc45c1f615fd8aaec924399c7a123b9` exactly. `release-prepare.yml`
+`33c7ed9da9bf42c2320381485afaace3e5e91dae` exactly. `release-prepare.yml`
 already matches the same template. Record both reviewed file digests in the
 release contract tests so later divergence requires an explicit template review.
 Keep the package's matcher tests and Node built-in test runner.

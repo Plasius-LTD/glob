@@ -64,7 +64,7 @@ publication is permitted. A failed integration holds release; returning to
 picomatch is outside the owner's approved removal plan.
 
 The release workflow matches the reviewed `Plasius-LTD/schema` template at
-`ad0bd3c96bc45c1f615fd8aaec924399c7a123b9`. Both CD phases use its standard
+`33c7ed9da9bf42c2320381485afaace3e5e91dae`. Both CD phases use its standard
 main/production, sealed-artifact, provenance and npm OIDC checks. Glob adds no
 npm secret, first-publication input or credential fallback. Configure npm trust
 for `Plasius-LTD/glob`, workflow `cd.yml`, environment `production`, with direct
