@@ -60,10 +60,10 @@ See [Task #1](https://github.com/Plasius-LTD/glob/issues/1), the
 [design](docs/design/build-tool-glob-compatibility.md) and
 [ADR-0001](docs/adrs/adr-0001-nonrecursive-build-tool-matching.md).
 Releases run exclusively through protected main/production `cd.yml`. No local
-publication is permitted. A failed integration holds release; the vulnerable
-implementation is not an acceptable production rollback.
+publication is permitted. A failed integration holds release; returning to
+picomatch is outside the owner's approved removal plan.
 
-The first 1.0.0 registration requires an explicit default-off dispatch and a
+The first 1.0.2 registration requires an explicit default-off dispatch and a
 dedicated one-day production `NPM_BOOTSTRAP_TOKEN`, under the existing reviewed
 first-registration process. The inherited organisation token is ineligible.
 The exact-main guard accepts only anonymous registry 404, preserves the sealed

@@ -28,11 +28,19 @@ runtime capability or infrastructure is added by this package.
 ## First publication
 
 Reuse the existing default-off first-registration boundary from site ADR 0197,
-narrowed to `Plasius-LTD/glob` / `@plasius/glob@1.0.0`. An explicit
+narrowed to `Plasius-LTD/glob` / `@plasius/glob@1.0.2`. An explicit
 `first_publication=true` dispatch is forwarded through both CD phases. A
 reviewed dependency-free guard verifies the repository/package/version, exact
 main checkout and workflow SHA, and a bounded anonymous registry HTTP 404.
 Network errors, redirects, existing packages and failed OIDC never enable it.
+
+The 22 November maintenance release prepared 1.0.1 and reserved its immutable
+tag before ordinary OIDC failed on the unregistered package. Preserve that tag
+and pipeline-generated release history. Prepare 1.0.2 through the normal
+release workflow, admit only that exact first-registration version, and reject
+the obsolete 1.0.0/1.0.1 versions and every other version. The owner confirmed
+continued picomatch removal after the upstream advisory was withdrawn; this is
+the requested dependency policy, not an active vulnerability exception.
 
 Only a dedicated one-day granular `NPM_BOOTSTRAP_TOKEN` in the production
 GitHub environment may register the package. Do not use the inherited

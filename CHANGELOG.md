@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+- Bind first registration to 1.0.2 after the failed 1.0.1 OIDC attempt, preserving
+  the existing release tag, exact-main gates and one-day credential boundary.
+
 ## [1.0.1] - 2026-11-22
 
 - Refresh supported npm dependency and security tooling baselines; preserve runtime API contracts (weekly maintenance, 2026-11-22).

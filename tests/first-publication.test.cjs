@@ -6,7 +6,7 @@ const { join } = require('node:path');
 const { spawnSync } = require('node:child_process');
 const sha = 'a'.repeat(40);
 const valid = {
-  repository: 'Plasius-LTD/glob', packageName: '@plasius/glob', version: '1.0.0',
+  repository: 'Plasius-LTD/glob', packageName: '@plasius/glob', version: '1.0.2',
   optIn: 'true', credentialPresent: true, ref: 'refs/heads/main',
   workflowRef: 'Plasius-LTD/glob/.github/workflows/cd.yml@refs/heads/main',
   eventName: 'workflow_dispatch', expectedCommitSha: sha, checkedOutSha: sha, workflowSha: sha,
@@ -26,7 +26,7 @@ test('first registration admits only the exact initial package and bounded anony
   assert.equal(calls, 1);
   for (const override of [
     { repository: 'Other/glob' }, { repository: 'Plasius-LTD/other' }, { packageName: '@plasius/other' },
-    { version: '1.0.1' }, { version: '1.0.0-beta.0' }, { optIn: false }, { optIn: 'false' },
+    { version: '1.0.0' }, { version: '1.0.1' }, { version: '1.0.3' }, { version: '1.0.2-beta.0' }, { optIn: false }, { optIn: 'false' },
     { credentialPresent: false }, { credentialPresent: 'true' }, { ref: 'refs/heads/feature' },
     { workflowRef: valid.workflowRef.replace('cd.yml', 'other.yml') },
     { eventName: 'push' }, { expectedCommitSha: undefined }, { expectedCommitSha: 'short' },
