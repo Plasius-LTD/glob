@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.0.3] - 2026-11-25
+
 - Retire first-registration enrollment after the verified 1.0.2 release and
   require the existing OIDC path for subsequent releases (#9).
 
@@ -24,6 +26,7 @@
   - Bounded nonrecursive matching and the build-tool compatibility surface required to remove picomatch from the site.
   - Explicit, temporary first-registration admission with exact-main verification, credential isolation and tested cleanup before permanent OIDC handover.
 
-[Unreleased]: https://github.com/Plasius-LTD/glob/compare/v1.0.2...HEAD
+[Unreleased]: https://github.com/Plasius-LTD/glob/compare/v1.0.3...HEAD
 [1.0.1]: https://github.com/Plasius-LTD/glob/releases/tag/v1.0.1
 [1.0.2]: https://github.com/Plasius-LTD/glob/releases/tag/v1.0.2
+[1.0.3]: https://github.com/Plasius-LTD/glob/releases/tag/v1.0.3
