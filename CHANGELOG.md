@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [1.0.2] - 2026-11-25
+
 - Adopt the shared Schema first-registration template with the standard temporary
   `NPM_TOKEN`, exact enrollment and subsequent tokenless OIDC handover (#9).
 
@@ -19,5 +21,6 @@
   - Bounded nonrecursive matching and the build-tool compatibility surface required to remove picomatch from the site.
   - Explicit, temporary first-registration admission with exact-main verification, credential isolation and tested cleanup before permanent OIDC handover.
 
-[Unreleased]: https://github.com/Plasius-LTD/glob/compare/v1.0.1...HEAD
+[Unreleased]: https://github.com/Plasius-LTD/glob/compare/v1.0.2...HEAD
 [1.0.1]: https://github.com/Plasius-LTD/glob/releases/tag/v1.0.1
+[1.0.2]: https://github.com/Plasius-LTD/glob/releases/tag/v1.0.2
