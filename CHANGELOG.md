@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+- Retire first-registration enrollment after the verified 1.0.2 release and
+  require the existing OIDC path for subsequent releases (#9).
+
 ## [1.0.2] - 2026-11-25
 
 - Adopt the shared Schema first-registration template with the standard temporary

@@ -33,6 +33,31 @@ test('publication uses OIDC without package-specific credential inputs or fallba
   assert.match(workflow, /name: Enforce exact-main release identity/);
 });
 
+test('retired enrollment refuses first registration before any registry verification', async () => {
+  const { readFirstPublicationDescriptor, runFirstPublication } = await import('../scripts/verify-first-publication.mjs');
+  const enrollment = join(__dirname, '../.github/npm-first-publication.json');
+  assert.throws(() => readFileSync(enrollment), { code: 'ENOENT' });
+  const manifest = JSON.parse(readFileSync(join(__dirname, '../package.json'), 'utf8'));
+  const repository = new URL(manifest.repository.url.replace(/^git\+/u, '')).pathname.slice(1).replace(/\.git$/u, '');
+  const sha = 'a'.repeat(40);
+  const reports = [];
+  let verificationCalls = 0;
+  const result = await runFirstPublication({
+    GITHUB_REPOSITORY: repository, PACKAGE_NAME: manifest.name, PACKAGE_VERSION: manifest.version,
+    FIRST_PUBLICATION: 'true', NPM_TOKEN: 'synthetic-test-credential',
+    GITHUB_REF: 'refs/heads/main', GITHUB_EVENT_NAME: 'workflow_dispatch',
+    GITHUB_WORKFLOW_REF: `${repository}/.github/workflows/cd.yml@refs/heads/main`,
+    EXPECTED_SHA: sha, ACTUAL_SHA: sha, GITHUB_SHA: sha,
+  }, {
+    readDescriptor: () => readFirstPublicationDescriptor(enrollment),
+    verify: async () => { verificationCalls += 1; },
+    report: message => reports.push(message),
+  });
+  assert.equal(result, 1);
+  assert.equal(verificationCalls, 0);
+  assert.deepEqual(reports, ['First-publication verification failed; check enrollment, exact main and registry absence.\n']);
+});
+
 test('the template publication shell passes the sealed artifact and propagates npm failures', () => {
   const step = workflow.split('\n      - name: Publish package through npm OIDC\n')[1]?.split('\n      - name:')[0] ?? '';
   const body = step.split('        run: |\n')[1]?.split('\n').map(line => line.replace(/^ {10}/u, '')).join('\n');
