@@ -66,11 +66,12 @@ picomatch is outside the owner's approved removal plan.
 
 ## Package registration and trusted publishing
 
-The release workflow follows the shared `@plasius/schema` template. The reviewed
-enrollment allows only `@plasius/glob@1.0.2` through main `cd.yml` and the
-`production` environment, using the standard temporary `NPM_TOKEN`. The default
-release path remains OIDC. No package-specific secret is introduced. See the
+The release workflow follows the shared `@plasius/schema` template. Initial
+registration of `@plasius/glob@1.0.2` is verified and its enrollment descriptor is
+retired. Releases use main `cd.yml`, the `production` environment and npm Trusted
+Publishing through OIDC. Ordinary releases do not use `NPM_TOKEN`; an explicit
+first-registration request now fails before registry access. See the
 [registration design](docs/design/shared-first-registration.md) and
 [ADR 0003](docs/adrs/adr-0003-shared-schema-registration.md) for exact admission, credential cleanup
-and the verified OIDC handover. Publication remains incomplete until CD and npm
+and the OIDC handover checks. Each release remains incomplete until CD and npm
 registry integrity are verified.
